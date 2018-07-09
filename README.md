@@ -1,5 +1,5 @@
 # sdchain-sdk-cpp
-The c++ version of SDChain SDK
+The C++ version of SDChain SDK
 
 ## Function Description
 1. Contains interfaces provided by [REST-API](https://rest-beta.sdchain.io/).
