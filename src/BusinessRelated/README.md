@@ -1,16 +1,20 @@
-SDchain 业务相关
-define：全局宏定义
-Account:账户类通用接口
-包括：1、多种格式的json数据解析
-	  2、获取钱包
-	  3、申请账户
-	  4、json格式转换
-Order:订单类接口：继承自支付类通用接口
-包括：1、请求数据组包
-	  2、发送订单请求
-Payment:支付类接口：继承自账户类接口
-包括：1、请求数据组包
-      2、支付请求
-	  3、获得支付信息
-ServerInfo:服务器状态信息接口:继承自支付类接口
-包括：1、获取服务器状态信息
+<pre>SDchain business related<br>
+define： global macro definition<br>
+Account: Account class general interface<br>
+including：
+	1、JSON data analysis in a variety of formats<br>
+	2、Get wallet<br>
+	3、Apply account<br>
+	4、JSON format conversion<br>
+Order:Order class interface：Inherit payment generic interface<br>
+including：
+	1、Request data group package<br>
+	2、Send order request<br>
+Payment:Payment interface：Inherit account generic interface<br>
+including：
+	1、Request data group package<br>
+	2、Payment request<br>
+	3、Get payment info<br>
+ServerInfo:Server status information interface:Inherit payment generic interface<br>
+including：
+	1、Get server status infomation<br></pre>
