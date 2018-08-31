@@ -1,0 +1,43 @@
+手把手教你如何使用bcsdk-sdchain
+
+1 介绍
+	bcsdk-sdchain 是 SDChain CPP SDK（六域链C++版本的SDK）。该项目演示了如何在mbed os 中开发一个轻量级客户端，接入到SDChain的测试网络中。其中包含了所调用的接口和测试的例子。我们通过在mbed os client实现http的网络请求。调用SD-Cable的服务（具体服务参考：0https://cable.sdchain.io/）来实现SDChain对外提供的具体功能。
+
+2 使用步骤
+   以下步骤是假设你已经熟悉Mbed官方提供的“Mbed Online Compiler”在线IDE编译环境。
+   2.1 Fork项目源码
+		https://os.mbed.com/teams/SDchain-C-Plus-Plus-Team/code/bcsdk-sdchain/
+		通过上面连接，把项目的源码“Import Into Compiler”到你自己的项目空间中。
+   2.2 项目的依赖包
+		在你的代码中请检查，是否已经包含了一下依赖包：
+		EthernetInterface  
+		mbed-rtos  
+		mbed  
+		uniqueCPUID
+   2.3 SDK提供使用
+		目前SDK中提供了以下类库的封装：
+		Account类
+		Payment类
+		Order类
+		ServerInfo类
+		
+		首先在你的源文件中包含以下头文件
+		#include "mbed.h"
+		#include "EthernetInterface.h"
+		#include <stdio.h>
+		#include "uniqueCPUID.h"
+		#include <sstream>  // header of stringsteam
+		#include <iostream>  
+		#include <string>  
+
+		#include "Account.h"
+		#include "Payment.h"
+		#include "ServerInfo.h"
+		#include "Order.h"
+
+		然后根据你的需要，在你的程序中，先声明一个对象，调用对应的接口函数。
+		例如，创建一个SDChain的账号：
+		先声明一个Account act对象；
+		然后 act.getWallet();即生成账号的秘钥对。
+		
+	2.4 选择目标Board，进行编译，把生成的可执行bin文件upload到你的Board中。

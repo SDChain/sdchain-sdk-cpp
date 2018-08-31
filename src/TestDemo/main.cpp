@@ -43,7 +43,7 @@ int sd_wallet()
 {
 	MbedJSONValue mJson;
 	Account act;
-	string strRet = act.getWallet(mJson);
+	string strRet = act.newWallet(mJson);
 	if (strRet.empty())
 	{
 		return -1;
@@ -73,7 +73,7 @@ string sd_postpayment()//÷ß∏∂«Î«Û
 	string strWallet = "6ByxwCh2Lqwwr3pk6mh4GBb4bsqFz2zAKY";
 	string strUrl = "/v1/accounts/payments/";
 	pay.SetJsonBody(mbJson, secret, src_acc, dst_acc, amount, MemoType, MemoData);
-	strJson = pay.PostPayment(mbJson, strUrl, strWallet,"");
+	strJson = pay.submitPayment(mbJson, strUrl, strWallet,"");
 	if (strJson.empty())
 	{
 		return "error";
@@ -100,7 +100,7 @@ string sd_getpaymentinfo(string hash)
 	string strUrl = "/v1/accounts/payments/";
 	//string strHash = "EF252979355F2666486F69E9C96D137265214DE65B14E1136ECCDCE84F09AD11";
 	string strHash = hash;
-	strJson = pay.GetPaymentInfo(strUrl, strWallet, strHash);
+	strJson = pay.getPaymentInfo(strUrl, strWallet, strHash);
 	if (strJson.empty())
 	{
 		return "error";
@@ -149,7 +149,7 @@ int sd_gettransactions(string tx_hash)
 	string strHash = "EF252979355F2666486F69E9C96D137265214DE65B14E1136ECCDCE84F09AD11";
 	strHash = tx_hash;
 	string strUrl = "/v1/transactions/";
-	strJson = pay.GetPaymentInfo(strUrl,"", strHash);
+	strJson = pay.getPaymentInfo(strUrl,"", strHash);
 	if (strJson.empty())
 	{
 		return -1;
@@ -202,7 +202,7 @@ int sd_getpaymenthistory()
 	int per_page = 10;
 	int page = 1;
 	pay.SetJsonBody(mbJson, src_acc, dst_acc, direction, start_ledger, end_ledger, per_page, page);
-	strJson = pay.PostPayment(mbJson, strUrl, strWallet, "");
+	strJson = pay.submitPayment(mbJson, strUrl, strWallet, "");
 	if (strJson.empty())
 	{
 		return -1;
@@ -242,7 +242,7 @@ int sd_getdefaultfee()
 	MbedJSONValue objJson;
 	string strJson = "";
 	string strUrl = "/v1/transaction-fee";
-	strJson = serInfo.GetPaymentInfo(strUrl, "", "");
+	strJson = serInfo.getPaymentInfo(strUrl, "", "");
 	if (strJson.empty())
 	{
 		return -1;
@@ -263,7 +263,7 @@ int sd_getserverinfo()
 	MbedJSONValue objJson;
 	string strJson = "";
 	string strUrl = "/v1/server";
-	strJson = serInfo.GetPaymentInfo(strUrl, "", "");
+	strJson = serInfo.getPaymentInfo(strUrl, "", "");
 	if (strJson.empty())
 	{
 		return -1;
@@ -286,7 +286,7 @@ int sd_getserverconnected()
 	MbedJSONValue objJson;
 	string strJson = "";
 	string strUrl = "/v1/server/connected";
-	strJson = serInfo.GetPaymentInfo(strUrl, "", "");
+	strJson = serInfo.getPaymentInfo(strUrl, "", "");
 	if (strJson.empty())
 	{
 		return -1;
@@ -307,7 +307,7 @@ int sd_queryorderlist()
 	string strJson = "";
 	string strUrl = "/v1/accounts/orders/";
 	string strWallet = "6ByxwCh2Lqwwr3pk6mh4GBb4bsqFz2zAKY";
-	strJson = orderInfo.GetPaymentInfo(strUrl, strWallet, "");
+	strJson = orderInfo.getPaymentInfo(strUrl, strWallet, "");
 	if (strJson.empty())
 	{
 		return -1;
@@ -347,7 +347,7 @@ int sd_commitorder()
 	string strWallet = "6ByxwCh2Lqwwr3pk6mh4GBb4bsqFz2zAKY";
 	string secret = "sh7dqVn8mhg6BqGfAQyaYVUwK2zkR";
 	orderCommit.SetJsonBody(mbJson, secret, "buy", "SDA", "", "4", "CNY", "6UPd52jHtu1d88nc3S3WeroACFQpKfybhU", "22");
-	strJson = orderCommit.PostPayment(mbJson, strUrl, strWallet, "");
+	strJson = orderCommit.submitPayment(mbJson, strUrl, strWallet, "");
 	if (strJson.empty())
 	{
 		return -1;
@@ -382,9 +382,8 @@ int sd_deleteorder()
 	string strJson = "";
 	string strUrl = "/v1/accounts/orders/";
 	string strWallet = "6ByxwCh2Lqwwr3pk6mh4GBb4bsqFz2zAKY";
-	string strNum = "1234";
 	val["secret"] = "sh7dqVn8mhg6BqGfAQyaYVUwK2zkR";
-	strJson = orderCommit.PostOrder(val, strUrl, strWallet, strNum);
+	strJson = orderCommit.submitOrder(val, strUrl, strWallet);
 	if (strJson.empty())
 	{
 		return -1;
@@ -415,7 +414,7 @@ int sd_queryorderdetailed()
 	string strUrl = " /v1/accounts/orders/";
 	string strWallet = "6ByxwCh2Lqwwr3pk6mh4GBb4bsqFz2zAKY";
 	string hash = "EF252979355F2666486F69E9C96D137265214DE65B14E1136ECCDCE84F09AD11";
-	strJson = orderInfo.GetPaymentInfo(strUrl, strWallet,hash);
+	strJson = orderInfo.getPaymentInfo(strUrl, strWallet,hash);
 	if (strJson.empty())
 	{
 		cout << "call sd_queryorderdetailed exception quit" << endl;

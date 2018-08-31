@@ -35,7 +35,7 @@ string Account::getBalance(MbedJSONValue &in_out,string strWallet)
 	return "success";
 }
 
-string Account::getWallet(MbedJSONValue &in_out)
+string Account::newWallet(MbedJSONValue &in_out)
 {
 	//https://rest-beta.sdchain.io/v1/accounts/balances/6faLUhmp9gNgS9jXS3rAWbg8hFfi9PbWH5
 	string strRep = "";

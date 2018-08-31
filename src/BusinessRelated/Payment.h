@@ -15,10 +15,14 @@ using namespace std;
 class Payment:public Account
 {
 public:
-	string PostPayment(MbedJSONValue& in,string sUrl,string sAddr,string otherInfo);//支付请求
+	string submitPayment(MbedJSONValue& in,string sUrl,string sAddr,string otherInfo);//支付请求
 	bool SetJsonBody(MbedJSONValue& out, string src_accIn, string dst_accIn, string direction, int start_ledger, int end_ledger, int per_page, int page);
 	bool SetJsonBody(MbedJSONValue& out,string secretIn,string src_accIn,string dst_accIn,string amt_In,string memtypeIn,string memdataIn);//组json包
-	string GetPaymentInfo(string sUrl, string sAddr, string otherInfo);//获得支付信息
+	string getPaymentInfo(string sUrl, string sAddr, string otherInfo);//获得支付信息
+	string getPaymentList((MbedJSONValue& in,string sUrl,string sAddr);//获得支付历史
+	string getTransactionInfo(string sUrl, string sAddr, string otherInfo);//获得交易详情
+	string getTransactionList((MbedJSONValue& in,string sUrl,string sAddr);//获得交易历史		
+	
 protected:
 private:
 	Client client;

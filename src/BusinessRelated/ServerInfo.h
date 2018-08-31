@@ -14,7 +14,12 @@ using namespace std;
 class ServerInfo :public Payment
 {
 public:
+	string getTransactionFee(); //获取默认费率
+	string getInfo(); //获取服务器信息
+	string isConnected(); //查看服务器连接
 protected:
 private:
+private:
+	Client client;
 };
 #endif
