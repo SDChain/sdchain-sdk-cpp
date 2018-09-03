@@ -1,5 +1,5 @@
 #include "Payment.h"
-string Payment::PostPayment(MbedJSONValue& in, string sUrl, string sAddr, string otherInfo)
+string Payment::submitPayment(MbedJSONValue& in, string sUrl, string sAddr, string otherInfo)
 {
 	string strRep = "";
 	string strUrl = sUrl + sAddr + otherInfo;
@@ -9,6 +9,24 @@ string Payment::PostPayment(MbedJSONValue& in, string sUrl, string sAddr, string
 	return content;
 }
 
+string Payment::getPaymentList(MbedJSONValue& in, string sUrl, string sAddr)
+{
+	sUrl = "/v1/accounts/payments";
+	return submitPayment(in, sUrl, sAddr, "");
+}
+
+string Payment::getTransactionInfo(string sUrl, string sAddr, string otherInfo);//获得交易详情
+{
+	sUrl = "/v1/accounts/transactions";
+	return submitPayment(in, sUrl, sAddr, otherInfo);
+}
+
+string Payment::getTransactionList((MbedJSONValue& in,string sUrl,string sAddr);//获得交易历史
+{
+	sUrl = "/v1/accounts/transactions";
+	return submitPayment(in, sUrl, sAddr, "");
+}
+	
 bool Payment::SetJsonBody(MbedJSONValue& out, string secretIn, string src_accIn, string dst_accIn, string amt_In, string memtypeIn, string memdataIn)
 {
 	MbedJSONValue val;
@@ -36,7 +54,7 @@ bool Payment::SetJsonBody(MbedJSONValue& out, string src_accIn, string dst_accIn
 	return true;
 }
 
-string Payment::GetPaymentInfo(string sUrl, string sAddr, string otherInfo)
+string Payment::getPaymentInfo(string sUrl, string sAddr, string otherInfo)
 {
 	string strRep = "";
 	if ( "" != sAddr)

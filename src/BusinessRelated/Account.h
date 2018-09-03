@@ -24,20 +24,20 @@ public:
 	std::string alias;
 	int quorum;
 
-	void setId(const string newId){this->id = newId;};
-	string getId(){return this->id;};
+	//void setId(const string newId){this->id = newId;};
+	//string getId(){return this->id;};
 
-	void setAlias(const string newAlias){this->alias = newAlias;};
-	string getAlias(){return this->alias;};
+	//void setAlias(const string newAlias){this->alias = newAlias;};
+	//string getAlias(){return this->alias;};
 
-	void setQuorum(int newQuorum){this->quorum = newQuorum;};
-	int getQuorum(){return this->quorum;};
+	//void setQuorum(int newQuorum){this->quorum = newQuorum;};
+	//int getQuorum(){return this->quorum;};
 
 	string getBalance(MbedJSONValue &in_out,string strWallet);
-	string  getWallet(MbedJSONValue &in_out);
+	string  newWallet(MbedJSONValue &in_out);
 
-	string createAccount();
-	string listAccounts();
+	//string createAccount();
+	//string listAccounts();
 	string getParseMbedJson(MbedJSONValue& out, const char * pos);//转换成Mbedjson格式
 	bool getRequestRet(MbedJSONValue& in);//获取交易成功标志
 	string getKeyValue(MbedJSONValue& in, string Key1, string Key2);//获取键值
